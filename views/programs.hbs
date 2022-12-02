@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            Programs
+            <a href="/programs/add" class="btn btn-success pull-right">Add New Program</a>
+        </h2>
+        <hr />
+        <div class="table-responsive">
+        <table class="table ">
+            <thead>
+            <tr>
+                <th>Program Code</th>
+                <th>Program Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each programs}}
+                <tr>
+                    <td><a href="/program/{{this.programCode}}">{{programCode}}</a></td>
+                    <td><a href="/program/{{this.programCode}}">{{programName}}</a></td>
+                    <td><div class="btn btn-danger"><a href="/programs/delete/{{this.programCode}}">remove</a></div></td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        </div>
+        
+    </div>
+     {{#unless programs}}
+        <div class="col-md-12 text-center">
+                <strong>{{message}}</strong>
+        </div>
+    {{/unless}}
+</div>
+

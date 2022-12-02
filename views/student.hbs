@@ -1,0 +1,139 @@
+<div class="row">
+	<div class="col-md-12">
+		<h2>{{viewData.student.firstName}}
+			{{viewData.student.lastName}}
+			- Student:
+			{{viewData.student.studentID}}</h2>
+		<hr />
+		<form method="post" action="/student/update">
+
+			<input type="hidden" name="studentID" value="{{viewData.student.studentID}}" />
+
+			<fieldset>
+				<legend>Personal Information</legend>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="firstName">First Name:</label>
+							<input class="form-control" id="firstName" name="firstName" type="text"
+								value="{{viewData.student.firstName}}" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="lastName">Last Name:</label>
+							<input class="form-control" id="lastName" name="lastName" type="text"
+								value="{{viewData.student.lastName}}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email">Email:</label>
+							<input class="form-control" id="email" name="email" type="text" value="{{viewData.student.email}}" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="phone">Phone:</label>
+							<input class="form-control" id="phone" name="phone" type="tel" value="{{viewData.student.phone}}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="addressStreet">Address (Street):</label>
+							<input class="form-control" id="addressStreet" name="addressStreet" type="text"
+								value="{{viewData.student.addressStreet}}" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<label for="addressCity">Address (City):</label>
+						<input class="form-control" id="addressCity" name="addressCity" type="text"
+							value="{{viewData.student.addressCity}}" />
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="addressState">Address (State):</label>
+							<input class="form-control" id="addressState" name="addressState" type="text"
+								value="{{viewData.student.addressState}}" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="addressPostal">Address (Zip Code):</label>
+							<input class="form-control" id="addressPostal" name="addressPostal" type="text"
+								value="{{viewData.student.addressPostal}}" />
+						</div>
+					</div>
+				</div>
+
+			</fieldset>
+
+			<fieldset>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Status:</label><br />
+							<label class="checkbox-inline">
+								<input type="radio" id="statusFT" name="status" {{#equal viewData.student.status "Full Time" }}
+									checked {{/equal}} value="Full Time" />
+								Full Time
+							</label>
+							<label class="checkbox-inline">
+								<input type="radio" id="statusPT" name="status" {{#equal viewData.student.status "Part Time" }}
+									checked {{/equal}} value="Part Time" />
+								Part Time
+							</label>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="program">Program</label>
+							{{#if viewData.programs}}
+								<select class="form-control" name="program" id="program">
+									<option value="">Select Program</option>
+									{{#each viewData.programs}}
+									<option value="{{this.programCode}}" {{#if this.selected}} selected {{/if}}> {{this.programCode}} - {{this.programName}} </option>
+									{{/each}}
+								</select>
+							{{else}}
+								<div>No Programs</div>
+							{{/if}}
+
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="isInternationalStudent">International
+								Student?</label>
+							<input class="form-control" type="checkbox" id="isInternationalStudent"
+								name="isInternationalStudent" {{#if viewData.student.isInternationalStudent}} checked {{/if}} />
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="expectedCredential">Expected Credential:</label>
+							<input class="form-control" id="expectedCredential" name="expectedCredential" type="text"
+								value="{{viewData.student.expectedCredential}}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="registrationDate">Registration Date</label>
+							<input class="form-control" id="registrationDate" name="registrationDate" type="text"
+								value="{{viewData.student.registrationDate}}" readonly />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<hr />
+			<input type="submit" class="btn btn-primary pull-right" value="Update Student" /><br /><br /><br />
+		</form>
+	</div>
+</div>
